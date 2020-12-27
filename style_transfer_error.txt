@@ -1,0 +1,18 @@
+---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+<ipython-input-33-0b6d284ff067> in <module>()
+     34 
+     35     noise.normal_(mean=0, std=4)
+---> 36     styled_image_shifted = model(image_shifted + noise)
+     37     styled_image_shifted = torch.roll(styled_image_shifted, shifts=(-dx, -dy), dims=(2, 3))
+     38     consistency_loss = F.mse_loss(styled_image_shifted[:,:,4:-4,4:-4], styled_image[:,:,4:-4,4:-4])
+
+15 frames
+/usr/local/lib/python3.6/dist-packages/torch/utils/data/_utils/signal_handling.py in handler(signum, frame)
+     64         # This following call uses `waitid` with WNOHANG from C side. Therefore,
+     65         # Python can still get and update the process status successfully.
+---> 66         _error_if_any_worker_fails()
+     67         if previous_handler is not None:
+     68             previous_handler(signum, frame)
+
+RuntimeError: DataLoader worker (pid 509) is killed by signal: Killed. 
